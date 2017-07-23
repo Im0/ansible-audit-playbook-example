@@ -1,0 +1,34 @@
+---
+- name: 1. Always succeed
+  command: /bin/true
+  ignore_errors: yes
+  changed_when: false
+
+- name: 2. Always fail
+  command: /bin/false
+  ignore_errors: yes
+  changed_when: false
+
+- name: 3. Always warn
+  shell: |
+    echo "WARNING: This task returned a warning."
+    exit 1
+  args:
+    executable: /bin/bash
+  ignore_errors: yes
+  changed_when: false
+
+- name: 4. Warning task as well
+  shell: |
+    echo "WARNING: This task returns a warning too."
+    exit 0
+  args:
+    executable: /bin/bash
+  ignore_errors: yes
+  changed_when: false
+
+- name: 5. Skip 
+  command: /bin/false
+  ignore_errors: yes
+  changed_when: false
+  when: ansible_distribution == 'Blah blah blah'
