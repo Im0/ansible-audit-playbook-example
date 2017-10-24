@@ -1,6 +1,6 @@
 ---
 - name: Ansible audit example
-  hosts: all
+  hosts: localhost
   become: yes
 
   roles:

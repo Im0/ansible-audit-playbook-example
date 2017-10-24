@@ -32,3 +32,31 @@
   ignore_errors: yes
   changed_when: false
   when: ansible_distribution == 'Blah blah blah'
+
+- name: 6. Assert fail
+  assert: 
+    that: "1 == 2"
+    msg: "FAIL: 1 != 2"
+  ignore_errors: yes
+  changed_when: false
+
+- name: 7. Assert succeed
+  assert: 
+    that: "1 == 1"
+    msg: "OK: 1 == 1"
+  ignore_errors: yes
+  changed_when: false
+
+- name: 8. Fail when, skipped if criteria not met
+  fail:
+    msg: "FAIL: The when clause failed"
+  when: 1 == 2
+  ignore_errors: yes
+  changed_when: false
+ 
+- name: 9. Fail when, when is True
+  fail:
+    msg: "FAIL: The when clause failed"
+  when: 1 == 1
+  ignore_errors: yes
+  changed_when: false
